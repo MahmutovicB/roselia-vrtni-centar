@@ -8,29 +8,34 @@ import FadeIn from "../ui/FadeIn";
 const partners = [
   {
     name: "Partner 1",
-    logo: "/images/partneri/partner-1.png",
+    logo: "/images/partneri/dewalt.png",
     href: "",
   },
   {
     name: "Partner 2",
-    logo: "/images/partneri/partner-2.png",
+    logo: "/images/partneri/ruris.png",
     href: "",
   },
   {
     name: "Partner 3",
-    logo: "/images/partneri/partner-3.png",
+    logo: "/images/partneri/scheppach.png",
     href: "",
   },
   {
     name: "Partner 4",
-    logo: "/images/partneri/partner-4.png",
+    logo: "/images/partneri/makita-logo.jpg",
     href: "",
   },
   {
     name: "Partner 5",
-    logo: "/images/partneri/partner-5.png",
+    logo: "/images/partneri/milwaukee.jpeg",
     href: "",
   },
+  {
+    name: "Partner 6",
+    logo: "/images/partneri/stihl.svg",
+    href: "",
+  }
 ];
 
 export default function Partneri() {
@@ -52,7 +57,7 @@ export default function Partneri() {
               const inner = (
                 <div
                   key={partner.name}
-                  className="relative h-10 w-32 sm:h-12 sm:w-36 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                  className="relative h-10 w-32 sm:h-12 sm:w-36 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"
                 >
                   <Image
                     src={partner.logo}

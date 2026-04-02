@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Crimson_Text } from "next/font/google";
 import "./globals.css";
+import Preloader from "./components/layout/Preloader";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -118,6 +119,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <Preloader />
         {children}
       </body>
     </html>
