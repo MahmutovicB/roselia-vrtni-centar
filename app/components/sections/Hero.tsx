@@ -17,7 +17,7 @@ export default function Hero() {
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero.jpg"
+          src="/images/hero-bg.jpg"
           alt="Roselia Vrtni Centar – sadnice i cvijeće"
           fill
           priority

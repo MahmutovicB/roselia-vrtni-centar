@@ -37,20 +37,20 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16 sm:h-20">
+      <nav className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20 sm:h-24">
         {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-2.5 group"
           aria-label="Roselia Vrtni Centar – početna"
         >
-          <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
             <Image
               src="/logo.png"
               alt="Roselia Vrtni Centar logo"
               fill
               className="object-contain"
-              sizes="40px"
+              sizes="80px"
             />
           </div>
           <span

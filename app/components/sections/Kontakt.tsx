@@ -274,7 +274,7 @@ export default function Kontakt() {
               <div className="rounded-2xl overflow-hidden border border-[#E8E0D5] shadow-sm" style={{ height: "280px" }}>
                 <iframe
                   title="Roselia Vrtni Centar – lokacija Podlugovi"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2873.0!2d18.2853!3d43.9747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDU4JzI4LjkiTiAxOMKwMTcnMDcuMSJF!5e0!3m2!1sbs!2sba!4v1680000000000!5m2!1sbs!2sba"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2871.5845251564906!2d18.25508917641012!3d43.967960132015925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f33e85e83ab91%3A0x313bff2dbcdb084c!2sVRTNI%20CENTAR%20ROSELIA!5e0!3m2!1sen!2sba!4v1775144071181!5m2!1sen!2sba"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

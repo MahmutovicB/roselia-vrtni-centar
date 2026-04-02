@@ -4,14 +4,12 @@ import FadeIn from "../ui/FadeIn";
 // Replace these with actual client photos placed in /public/images/galerija/
 // Dimensions optimized for a 3-col masonry-style grid
 const photos = [
-  { src: "/images/galerija/01.jpg", alt: "Sadnice cvijeća u centru", span: "row-span-2" },
-  { src: "/images/galerija/02.jpg", alt: "Ukrasno grmlje i zelenilo", span: "" },
-  { src: "/images/galerija/03.jpg", alt: "Vrtni alat i oprema", span: "" },
-  { src: "/images/galerija/04.jpg", alt: "Sezonske sadnice proljeće", span: "" },
-  { src: "/images/galerija/05.jpg", alt: "Lončanice i dekorativne tegle", span: "row-span-2" },
-  { src: "/images/galerija/06.jpg", alt: "Ruže i cvijeće", span: "" },
-  { src: "/images/galerija/07.jpg", alt: "Roselia vrtni centar izlog", span: "" },
-  { src: "/images/galerija/08.jpg", alt: "Sjeme i gnojiva asortiman", span: "" },
+  { src: "/images/gallery-sadnice.jpg", alt: "Sadnice i cvijeće", span: "row-span-2" },
+  { src: "/images/gallery-drvece.jpg", alt: "Ukrasno bilje i drveće", span: "" },
+  { src: "/images/gallery-sjeme.jpg", alt: "Sjeme i gnojiva", span: "" },
+  { src: "/images/gallery-alat.jpg", alt: "Vrtni alat", span: "row-span-2" },
+  { src: "/images/gallery-masine.jpg", alt: "Radne mašine", span: "" },
+  { src: "/images/gallery-loncanice.jpg", alt: "Lončanice i tegle", span: "" },
 ];
 
 // Placeholder gradient colors while waiting for real photos
