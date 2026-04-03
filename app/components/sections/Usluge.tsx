@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
 import FadeIn from "../ui/FadeIn";
 
 const services = [
@@ -19,21 +23,21 @@ const services = [
     emoji: "🌱",
     title: "Sjeme i gnojiva",
     description:
-      "Kvalitetno sjeme povrća, trave i cvijeća. Organska i mineralna gnojiva za zdrav rast biljaka.",
+      "Sjemenski krompir, sadnice paradajza, paprike, krastavaca i jagoda. Sjeme povrća, trave i cvijeća. Organska i mineralna gnojiva.",
     accent: "#4A7A25",
   },
   {
     emoji: "🔧",
     title: "Vrtni alat i oprema",
     description:
-      "Profesionalni i hobi alati za sve vrtne radove — kopanje, sadnju, zalijevanje i njegu.",
+      "Profesionalni i hobi alati za sve vrtne radove — kopanje, sadnju, zalijevanje i njegu. Uključujući Scheppach opremu i rezervne dijelove.",
     accent: "#5C4033",
   },
   {
     emoji: "🚜",
     title: "Radne mašine",
     description:
-      "Motokultivatori, kosilice, trimeri i ostala mehanizacija za efikasan rad u vrtu i na parceli.",
+      "Ovlašteni prodavač Scheppach mašina — motokultivatori, kosilice, trimeri, lančane pile i drobilice za efikasan rad u vrtu i na parceli.",
     accent: "#8B6355",
   },
   {
@@ -43,6 +47,15 @@ const services = [
       "Dekorativne posude, tegle i žardinjere svih veličina za unutarnje i vanjsko uređenje.",
     accent: "#A52020",
   },
+];
+
+// Leaves positioned at card edges — stems touch the card, tips grow outward
+const CARD_LEAVES = [
+  // top-right corner, fan of two
+  { right: 12,  top: -36, rotate:  30, delay: 0    },
+  { right: 34,  top: -30, rotate:   5, delay: 0.08 },
+  // bottom-left corner
+  { left:  14, bottom: -34, rotate: 165, delay: 0.05 },
 ];
 
 export default function Usluge() {
@@ -133,35 +146,119 @@ function ServiceCard({
   description: string;
   accent: string;
 }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <div className="group bg-[#FAF7F2] rounded-2xl p-6 sm:p-7 border border-[#E8E0D5] hover:border-[#8B1A1A]/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-      {/* Emoji icon */}
-      <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5 transition-transform duration-300 group-hover:scale-110"
-        style={{ backgroundColor: `${accent}15` }}
-      >
-        {emoji}
-      </div>
+    // Outer wrapper — tracks hover, overflow visible so leaves peek out
+    <div
+      className="relative"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Leaves — behind the card (z-0), growing from edges */}
+      {CARD_LEAVES.map((leaf, i) => (
+        <motion.div
+          key={i}
+          className="absolute pointer-events-none z-0"
+          style={{
+            right:  "right"  in leaf ? leaf.right  : undefined,
+            left:   "left"   in leaf ? leaf.left   : undefined,
+            top:    "top"    in leaf ? leaf.top     : undefined,
+            bottom: "bottom" in leaf ? leaf.bottom  : undefined,
+            rotate: leaf.rotate,
+            transformOrigin: "50% 100%", // stem = base of leaf
+          }}
+          animate={hovered ? "hover" : "rest"}
+          variants={{
+            rest:  { scale: 0, opacity: 0 },
+            hover: { scale: 1, opacity: 1 },
+          }}
+          transition={{
+            duration: 0.45,
+            delay: leaf.delay,
+            ease: [0.34, 1.56, 0.64, 1], // spring overshoot
+          }}
+        >
+          <LeafSVG color={accent} />
+        </motion.div>
+      ))}
 
-      {/* Bottom accent line */}
-      <div
-        className="h-0.5 w-8 rounded-full mb-4 transition-all duration-300 group-hover:w-14"
-        style={{ backgroundColor: accent }}
-      />
+      {/* Card — sits above leaves (z-10) */}
+      <motion.div
+        className="relative z-10 bg-[#FAF7F2] rounded-2xl p-6 sm:p-7 border border-[#E8E0D5] transition-colors duration-300 cursor-default"
+        animate={hovered ? "hover" : "rest"}
+        variants={{
+          rest:  { y: 0,  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",  borderColor: "#E8E0D5" },
+          hover: { y: -4, boxShadow: "0 12px 28px rgba(0,0,0,0.10)", borderColor: `${accent}55` },
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        {/* Icon */}
+        <motion.div
+          className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5 select-none"
+          style={{ backgroundColor: `${accent}18` }}
+          animate={hovered ? "hover" : "rest"}
+          variants={{
+            rest:  { scale: 1,    rotate: 0  },
+            hover: { scale: 1.15, rotate: -5 },
+          }}
+          transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+        >
+          {emoji}
+        </motion.div>
 
-      <h3
-        className="text-lg sm:text-xl font-700 text-[#1A1A1A] mb-3"
-        style={{ fontFamily: "var(--font-playfair)" }}
-      >
-        {title}
-      </h3>
-      <p
-        className="text-[#5C4033] text-base leading-relaxed"
-        style={{ fontFamily: "var(--font-crimson)" }}
-      >
-        {description}
-      </p>
+        {/* Accent line */}
+        <motion.div
+          className="h-0.5 rounded-full mb-4"
+          style={{ backgroundColor: accent }}
+          animate={hovered ? "hover" : "rest"}
+          variants={{
+            rest:  { width: "2rem"   },
+            hover: { width: "3.5rem" },
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        />
+
+        <h3
+          className="text-lg sm:text-xl font-700 text-[#1A1A1A] mb-3"
+          style={{ fontFamily: "var(--font-playfair)" }}
+        >
+          {title}
+        </h3>
+        <p
+          className="text-[#5C4033] text-base leading-relaxed"
+          style={{ fontFamily: "var(--font-crimson)" }}
+        >
+          {description}
+        </p>
+      </motion.div>
     </div>
+  );
+}
+
+function LeafSVG({ color }: { color: string }) {
+  return (
+    <svg
+      width={28}
+      height={44}
+      viewBox="0 0 14 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7 21 C7 21 0 14 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 14 7 21 7 21Z"
+        fill={color}
+        fillOpacity={0.55}
+      />
+      <line
+        x1="7" y1="21"
+        x2="7" y2="1"
+        stroke="white"
+        strokeOpacity={0.4}
+        strokeWidth={1}
+        strokeLinecap="round"
+      />
+    </svg>
   );
 }
 

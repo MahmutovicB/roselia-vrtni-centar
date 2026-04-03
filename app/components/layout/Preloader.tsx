@@ -1,9 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { preloaderDone, markPreloaderDone } from '@/app/utils/preloaderState'
+
+const SKIP_PATHS = ['/zahvalnost']
 
 const IMAGES = [
   '/preloader/roselia-1.png',
@@ -26,13 +29,14 @@ const EXIT_DURATION   = 0.55
 type Phase = 'reel' | 'exit' | 'done'
 
 export default function Preloader({ onDone }: { onDone?: () => void }) {
+  const pathname = usePathname()
   const [phase, setPhase]           = useState<Phase>('reel')
   const [activeIndex, setActiveIndex] = useState(0)
   const [lastBlur, setLastBlur]     = useState(0)
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
 
   useEffect(() => {
-    if (preloaderDone) { setPhase('done'); return }
+    if (preloaderDone || SKIP_PATHS.includes(pathname)) { setPhase('done'); return }
 
     // Cycle images
     IMAGES.forEach((_, i) => {

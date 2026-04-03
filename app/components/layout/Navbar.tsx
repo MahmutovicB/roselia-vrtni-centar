@@ -31,32 +31,31 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-[#FAF7F2]/95 backdrop-blur-sm shadow-sm border-b border-[#F0EBE1]"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <nav className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20 sm:h-24">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 group"
+          className="flex items-center gap-1.5 group"
           aria-label="Roselia Vrtni Centar – početna"
         >
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
+          <div className="relative h-[52px] w-[52px] sm:h-[60px] sm:w-[60px] flex-shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo-transparent.png"
               alt="Roselia Vrtni Centar logo"
               fill
+              loading="eager"
               className="object-contain"
-              sizes="80px"
+              sizes="72px"
             />
           </div>
           <span
-            className={`font-heading font-700 text-base sm:text-lg leading-tight transition-colors duration-200 ${
-              scrolled ? "text-[#8B1A1A]" : "text-white"
-            }`}
+            className={`font-heading font-700 text-base sm:text-lg leading-tight transition-colors duration-200 ${scrolled ? "text-[#8B1A1A]" : "text-white"
+              }`}
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Roselia
@@ -69,11 +68,10 @@ export default function Navbar() {
             <li key={link.href}>
               <button
                 onClick={() => handleNavClick(link.href)}
-                className={`font-body text-sm tracking-wide transition-colors duration-200 cursor-pointer relative group ${
-                  scrolled
+                className={`font-body text-sm tracking-wide transition-colors duration-200 cursor-pointer relative group ${scrolled
                     ? "text-[#5C4033] hover:text-[#8B1A1A]"
                     : "text-white/90 hover:text-white"
-                }`}
+                  }`}
                 style={{ fontFamily: "var(--font-crimson)" }}
               >
                 {link.label}
@@ -98,9 +96,8 @@ export default function Navbar() {
           <a
             href="tel:+38761559593"
             aria-label="Pozovite nas"
-            className={`transition-colors duration-200 ${
-              scrolled ? "text-[#8B1A1A]" : "text-white"
-            }`}
+            className={`transition-colors duration-200 ${scrolled ? "text-[#8B1A1A]" : "text-white"
+              }`}
           >
             <PhoneIcon size={20} />
           </a>
@@ -108,9 +105,8 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Zatvori meni" : "Otvori meni"}
             aria-expanded={isOpen}
-            className={`p-1.5 transition-colors duration-200 ${
-              scrolled ? "text-[#5C4033]" : "text-white"
-            }`}
+            className={`p-1.5 transition-colors duration-200 ${scrolled ? "text-[#5C4033]" : "text-white"
+              }`}
           >
             {isOpen ? <XIcon /> : <MenuIcon />}
           </button>
@@ -119,9 +115,8 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="bg-[#FAF7F2] border-t border-[#F0EBE1] px-5 py-4 flex flex-col gap-1">
           {navLinks.map((link) => (

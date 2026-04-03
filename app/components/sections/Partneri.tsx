@@ -12,11 +12,6 @@ const partners = [
     href: "",
   },
   {
-    name: "Partner 2",
-    logo: "/images/partneri/ruris.png",
-    href: "",
-  },
-  {
     name: "Partner 3",
     logo: "/images/partneri/scheppach.png",
     href: "",

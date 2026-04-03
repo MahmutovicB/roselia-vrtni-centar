@@ -11,6 +11,7 @@ const schema = z.object({
 const resend = new Resend(process.env.RESEND_API_KEY);
 const contactEmail = process.env.CONTACT_EMAIL || "vrt.roselia@gmail.com";
 
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
     const { ime, kontakt, poruka } = parsed.data;
 
     const { error } = await resend.emails.send({
-      from: "Roselia Web <noreply@roselia.ba>",
+      from: process.env.RESEND_FROM_EMAIL || "Roselia Web <onboarding@resend.dev>",
       to: [contactEmail],
       replyTo: kontakt.includes("@") ? kontakt : undefined,
       subject: `Nova poruka od ${ime} – Roselia Vrtni Centar`,
